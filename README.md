@@ -9,3 +9,6 @@ To use it one needs a Google API key.
 
 ##Documentation
 The api of this package can be found [here](api.md)
+
+##Example
+todo: a minimal example how to use it
