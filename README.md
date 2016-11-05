@@ -11,7 +11,7 @@ To use it one needs a Google API key.
 ##Installation
 Copy the file 'googlesearch-1.0.0.tgz' in your project directory and run:
 
-`npm install --save-dev googlesearch-1.0.0.tgz`
+`npm install googlesearch-1.0.0.tgz`
 
 
 ##Documentation
