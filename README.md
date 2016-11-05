@@ -25,7 +25,7 @@ var googleSearch = new GoogleSearch({
 
 // Perform Search:
 googleSearch.search({
-    "term": "amsterdam",
+    "term": "Amsterdam",
     "site": "wikipedia.org",
     "maxPages": 2
 })
