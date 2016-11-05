@@ -7,8 +7,16 @@ information / data from the internet for improving official statistics.
 S4SGoogleSearch is a nodejs package to conveniently use the Google search engine API to automatically fire search requests from a program.
 To use it one needs a Google API key. 
 
+
+##Installation
+Copy the file 'googlesearch-1.0.0.tgz' in your project directory and run:
+
+`npm install --save-dev googlesearch-1.0.0.tgz`
+
+
 ##Documentation
 The api of this package can be found [here](api.md)
+
 
 ##Example
 Below is an example of using this package to search on wikipedia.org for the word "Amsterdam" returning 2 pages (20 results) at a maximum.
