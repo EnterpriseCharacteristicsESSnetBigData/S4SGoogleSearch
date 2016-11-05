@@ -9,7 +9,7 @@ To use it one needs a Google API key.
 
 
 ##Installation
-Copy the file 'googlesearch-1.0.0.tgz' in your project directory and run:
+Copy the file 'googlesearch-1.0.0.tgz' into your project directory and run:
 
 `npm install googlesearch-1.0.0.tgz`
 
