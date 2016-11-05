@@ -11,4 +11,34 @@ To use it one needs a Google API key.
 The api of this package can be found [here](api.md)
 
 ##Example
-todo: a minimal example how to use it
+Below is an example of using this package to search on wikipedia.org for the word "Amsterdam" returning 2 pages (20 results) at a maximum.
+
+```javascript
+var GoogleSearch = require('googlesearch');
+
+// Define Search:
+var googleSearch = new GoogleSearch({
+	key: "<your key>",
+	searchEngineId: "<your searchengine id>",
+	host: "<your host>"
+});
+
+// Perform Search:
+googleSearch.search({
+    "term": "amsterdam",
+    "site": "wikipedia.org",
+    "maxPages": 2
+})
+.then(function(data) {
+    data.forEach(function (row) {
+		// Replace newlines and tabs by spaces in snippet:
+        row.snippet = row.snippet.replace(/(\r\n|\n|\r|\t)/gm,' ');
+		
+		// Write a single search result to console:
+        console.log(row);
+    })
+})
+.catch(function(err) {
+    console.log(err);
+});
+```
