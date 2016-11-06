@@ -10,10 +10,10 @@ class GoogleSearch {
      *@classdesc use Google Custom Seach Api to search the internet
      * @constructor
      * @param {Object} settings - settings for Custom Search Api (CSE)
-     * @param {string} [settings.BASE_URL=https://www.googleapis.com/customsearch/v1] - url of CSE Api
-     * @param {string} settings.KEY_VALUE - your CSE api key
-     * @param {string} settings.SEARCH_ENGINE_ID - your google search_engine id
-     * @param {string} settings.GOOGLEHOST - google url eg google.nl
+     * @param {string} [settings.baseUrl=https://www.googleapis.com/customsearch/v1] - url of CSE Api
+     * @param {string} settings.key - your CSE api key
+     * @param {string} settings.searchEngineId - your google search_engine id
+     * @param {string} settings.host - google url eg google.nl
      *
      */
     constructor(settings) {
@@ -37,7 +37,7 @@ class GoogleSearch {
      /**
      * searches for webdata specified in searchItem
      * @param  {Object} searchItem - json object with keys:
-     * @param  {string} searchItem.site - Limit the search to this site (url)
+     * @param  {string} [searchItem.site] - Limit the search to this site (url)
      * @param  {string} searchItem.term - Searchstring
      * @param  {integer} [searchItem.maxPages=1] - number of pages returned. One page contains 10 search results.
      * @returns {Promise|Array<searchResult>} Array of search results, see {@link searchResult}

@@ -30,10 +30,10 @@ use Google Custom Seach Api to search the internet
 **Params**
 
 - settings <code>Object</code> - settings for Custom Search Api (CSE)
-    - [.BASE_URL] <code>string</code> <code> = &quot;https://www.googleapis.com/customsearch/v1&quot;</code> - url of CSE Api
-    - .KEY_VALUE <code>string</code> - your CSE api key
-    - .SEARCH_ENGINE_ID <code>string</code> - your google search_engine id
-    - .GOOGLEHOST <code>string</code> - google url eg google.nl
+    - [.baseUrl] <code>string</code> <code> = &quot;https://www.googleapis.com/customsearch/v1&quot;</code> - url of CSE Api
+    - .key <code>string</code> - your CSE api key
+    - .searchEngineId <code>string</code> - your google search_engine id
+    - .host <code>string</code> - google url eg google.nl
 
 <a name="GoogleSearch+search"></a>
 
@@ -45,7 +45,7 @@ searches for webdata specified in searchItem
 **Params**
 
 - searchItem <code>Object</code> - json object with keys:
-    - .site <code>string</code> - Limit the search to this site (url)
+    - [.site] <code>string</code> - Limit the search to this site (url)
     - .term <code>string</code> - Searchstring
     - [.maxPages] <code>integer</code> <code> = 1</code> - number of pages returned. One page contains 10 search results.
 
