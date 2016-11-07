@@ -96,6 +96,7 @@ class GoogleSearch {
         var self = this;
         return new Promise(
             function(resolve, reject) {
+                if (self.term) {
                 var today = moment().format('YYYYMMDD');
                 var counts = {
                     totalFetched: 0,
@@ -116,6 +117,10 @@ class GoogleSearch {
                             resolve(self.result);
                         }
                     })
+                } else {
+                    var err = new Error("You must supply a search term");
+                    reject(err);
+                }
             });
         }
 }
