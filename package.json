@@ -2,7 +2,7 @@
   "name": "googlesearch",
   "version": "1.0.0",
   "description": "",
-  "main": "googlesearch.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "jsdoc2md ./*.js -p list -r list --plugin dmd-clear > api.md"

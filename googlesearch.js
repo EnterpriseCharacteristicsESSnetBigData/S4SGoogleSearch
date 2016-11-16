@@ -50,7 +50,7 @@ class GoogleSearch {
         this.term = searchItem.term;
         this.MAXPAGES = searchItem.maxPages || 1;
         if (searchItem.blacklist) {
-            this.blacklist = searchItem.blacklist.map(function(url) {return tld.getDomain(url)});
+            this._blacklist = searchItem.blacklist.map(function(url) {return tld.getDomain(url)});
         };
         this.result = [];
         return this._processQuery();
@@ -61,7 +61,7 @@ class GoogleSearch {
      * @param  {Array.<string>} urls Array of urls
      */
     blacklist(urls) {
-        this.blacklist = urls.map(function(url) {return tld.getDomain(url)});
+        this._blacklist = urls.map(function(url) {return tld.getDomain(url)});
     }
 
     _getGoogleResult(today, counts, next) {
@@ -94,8 +94,12 @@ class GoogleSearch {
                         url: ("link" in item) ? item.link : "",
                         item: JSON.stringify(item)
                     };
-                    if (self.blacklist && (self.blacklist.indexOf(tld.getDomain(searchResult.url)) < 0)) {
+                    if (!self._blacklist) {
                         self.result.push(searchResult);
+                    } else {
+                        if (self._blacklist.indexOf(tld.getDomain(searchResult.url)) < 0) {
+                            self.result.push(searchResult);                            
+                        }
                     }
                 }
                 counts.totalFetched = counts.totalFetched + googleResponse.items.length;
