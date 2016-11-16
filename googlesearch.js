@@ -4,6 +4,7 @@
 var request = require("request");
 var moment = require('moment');
 var async = require('async');
+var tld = require('tldjs');
 
 class GoogleSearch {
     /**
@@ -23,6 +24,7 @@ class GoogleSearch {
         this.GOOGLEHOST = settings.host;
         this.MAXPAGES = 1;
     }
+
     /**
      * @public
      * @typedef {Object} searchResult
@@ -36,18 +38,30 @@ class GoogleSearch {
      */
      /**
      * searches for webdata specified in searchItem
-     * @param  {Object} searchItem - json object with keys:
-     * @param  {string} [searchItem.site] - Limit the search to this site (url)
+     * @param  {Object} searchItem
      * @param  {string} searchItem.term - Searchstring
+     * @param  {string} [searchItem.site] - Limit the search to this site (url)
      * @param  {integer} [searchItem.maxPages=1] - number of pages returned. One page contains 10 search results.
+     * @param  {Array.<string>} [searchItem.blacklist] Array of urls, used to remove search results which are referring to these urls
      * @returns {Promise|Array<searchResult>} Array of search results, see {@link searchResult}
      */
     search(searchItem) {
         this.site = searchItem.site;
         this.term = searchItem.term;
         this.MAXPAGES = searchItem.maxPages || 1;
+        if (searchItem.blacklist) {
+            this.blacklist = searchItem.blacklist.map(function(url) {return tld.getDomain(url)});
+        };
         this.result = [];
         return this._processQuery();
+    }
+
+    /**
+     * Create new list of urls, used to remove search results which are referring to these urls
+     * @param  {Array.<string>} urls Array of urls
+     */
+    blacklist(urls) {
+        this.blacklist = urls.map(function(url) {return tld.getDomain(url)});
     }
 
     _getGoogleResult(today, counts, next) {
@@ -80,7 +94,9 @@ class GoogleSearch {
                         url: ("link" in item) ? item.link : "",
                         item: JSON.stringify(item)
                     };
-                    self.result.push(searchResult);
+                    if (self.blacklist && (self.blacklist.indexOf(tld.getDomain(searchResult.url)) < 0)) {
+                        self.result.push(searchResult);
+                    }
                 }
                 counts.totalFetched = counts.totalFetched + googleResponse.items.length;
                 counts.totalResults = googleResponse.searchInformation.totalResults;
